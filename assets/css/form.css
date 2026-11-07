@@ -1,0 +1,20 @@
+.form-section { max-width: 800px; margin: 2rem auto; }
+.form-intro { background: #eff6ff; padding: 1rem; border-left: 4px solid var(--primary); border-radius: var(--radius); margin-bottom: 2rem; }
+.content-form { background: var(--bg-primary); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.form-group { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; }
+.form-group legend { font-weight: 600; color: var(--primary); padding: 0 0.5rem; }
+.form-field { margin-bottom: 1.5rem; }
+.form-field label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
+.form-field input, .form-field textarea, .form-field select { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 1rem; transition: var(--transition); }
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
+.form-field small { display: block; margin-top: 0.25rem; color: var(--text-muted); font-size: 0.85rem; }
+.form-actions { display: flex; gap: 1rem; margin-top: 2rem; }
+.btn-submit, .btn-reset { padding: 0.75rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+.btn-submit { background: var(--gradient-primary); color: white; flex: 1; box-shadow: var(--shadow); }
+.btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-reset { background: var(--bg-tertiary); color: var(--text-primary); }
+.form-status { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; display: none; }
+.form-status.success { display: block; background: #d1fae5; color: #065f46; border-left: 4px solid #10b981; }
+.form-status.error { display: block; background: #fee2e2; color: #991b1b; border-left: 4px solid #ef4444; }
+@media (max-width: 768px) { .content-form { padding: 1rem; } .form-actions { flex-direction: column; } }
