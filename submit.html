@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icerik Gonder | Benim Sitem</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo">Benim Sitem</a></div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-nav-item"><span class="icon">&#127968;</span><span>Ana Sayfa</span></a>
+                <a href="submit.html" class="sidebar-nav-item active"><span class="icon">&#9997;</span><span>Icerik Gonder</span></a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+                <h1>Icerik Gonder</h1>
+            </header>
+            <section class="form-section">
+                <div class="form-intro"><strong>Kayit gerekmez!</strong> Formu doldurun, iceriginiz otomatik yayinlanacak.</div>
+                <form id="contentForm" class="content-form">
+                    <fieldset class="form-group">
+                        <legend>Yazar Bilgileri</legend>
+                        <div class="form-field"><label for="authorName">Adiniz *</label><input type="text" id="authorName" name="authorName" required></div>
+                        <div class="form-field"><label for="authorEmail">E-posta</label><input type="email" id="authorEmail" name="authorEmail"></div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <legend>Icerik Bilgileri</legend>
+                        <div class="form-field"><label for="postTitle">Baslik *</label><input type="text" id="postTitle" name="postTitle" required maxlength="100"></div>
+                        <div class="form-field"><label for="postCategory">Kategori *</label>
+                            <select id="postCategory" name="postCategory" required>
+                                <option value="gezi">Gezi</option><option value="tarih">Tarih</option><option value="yemek">Yemek</option><option value="teknoloji">Teknoloji</option><option value="diger">Diger</option>
+                            </select>
+                        </div>
+                        <div class="form-field"><label for="postTags">Etiketler</label><input type="text" id="postTags" name="postTags" placeholder="virgulle ayirin"></div>
+                        <div class="form-field"><label for="postExcerpt">Kisa Ozet *</label><textarea id="postExcerpt" name="postExcerpt" required rows="3"></textarea></div>
+                        <div class="form-field"><label for="postContent">Icerik *</label><textarea id="postContent" name="postContent" required rows="15"></textarea></div>
+                        <div class="form-field"><label for="featuredImage">Gorsel URL</label><input type="url" id="featuredImage" name="featuredImage"></div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit" id="submitBtn"><span class="btn-text">Yayinla</span><span class="btn-loading" style="display:none;">Gonderiliyor...</span></button>
+                        <button type="reset" class="btn-reset">Temizle</button>
+                    </div>
+                    <div id="formStatus" class="form-status"></div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="assets/js/submit.js"></script>
+    <script>function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }</script>
+</body>
+</html>
