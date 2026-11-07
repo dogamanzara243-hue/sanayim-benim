@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benim Sitem | Ana Vitrin</title>
+    <meta name="description" content="Siz de icerik ekleyin, topluluga katkida bulunun!">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/ads.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><a href="index.html" class="sidebar-logo">Benim Sitem</a></div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-nav-item active"><span class="icon">&#127968;</span><span>Ana Sayfa</span></a>
+                <a href="submit.html" class="sidebar-nav-item"><span class="icon">&#9997;</span><span>Icerik Gonder</span></a>
+                <a href="content/about.html" class="sidebar-nav-item"><span class="icon">&#8505;</span><span>Hakkinda</span></a>
+            </nav>
+            <div class="ad-container" style="margin: 2rem 1rem;">
+                <div class="ad-slot ad-sidebar"><span class="ad-label">Sponsor</span><span>Reklam Alani</span></div>
+            </div>
+            <div class="sidebar-cta">
+                <h3>Siz de Katilin!</h3>
+                <p>Iceriklerinizi paylasin</p>
+                <a href="submit.html" class="sidebar-cta-btn">Icerik Gonder</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+                <h1>Ana Vitrin</h1>
+                <a href="submit.html" class="btn btn-primary">Icerik Gonder</a>
+            </header>
+
+            <div class="ad-container">
+                <div class="ad-slot ad-header"><span class="ad-label">Reklam</span><span>Banner Alani</span></div>
+            </div>
+
+            <section class="vitrin">
+                <div class="vitrin-content">
+                    <h2>Toplulugun Gucuyle Buyuyen Platform</h2>
+                    <p>Binlerce kullanici tarafindan olusturulan icerikleri kesfedin.</p>
+                    <div class="vitrin-stats">
+                        <div class="vitrin-stat"><span class="vitrin-stat-value" id="totalPosts">0</span><span class="vitrin-stat-label">Icerik</span></div>
+                        <div class="vitrin-stat"><span class="vitrin-stat-value" id="totalAuthors">0</span><span class="vitrin-stat-label">Yazar</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-header"><h2 class="section-title">Son Eklenen Icerikler</h2></div>
+                <div id="postsList" class="posts-grid"><div class="loading"><div class="loading-spinner"></div></div></div>
+            </section>
+
+            <div class="ad-container">
+                <div class="ad-slot ad-footer"><span class="ad-label">Reklam</span><span>Footer Alani</span></div>
+            </div>
+
+            <footer class="main-footer"><p>&copy; 2026 Benim Sitem. Tum haklari saklidir.</p></footer>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+        fetch('content/posts/_index.json')
+            .then(r => r.json())
+            .then(posts => {
+                const c = document.getElementById('postsList');
+                document.getElementById('totalPosts').textContent = posts.length;
+                document.getElementById('totalAuthors').textContent = new Set(posts.map(p => p.author)).size;
+                if (posts.length === 0) {
+                    c.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;"><h3>Henuz icerik yok</h3><a href="submit.html" class="btn btn-primary" style="margin-top:1rem;">Ilk Icerigi Gonder</a></div>';
+                    return;
+                }
+                c.innerHTML = posts.slice(0, 6).map(p => `
+                    <article class="post-card" onclick="location.href='content/posts/` + p.slug + `.html'">
+                        ` + (p.image ? '<img src="' + p.image + '" class="post-card-image">' : '<div class="post-card-image"></div>') + `
+                        <div class="post-card-content">
+                            <span class="post-card-category">` + p.category + `</span>
+                            <h3 class="post-card-title">` + p.title + `</h3>
+                            <p class="post-card-excerpt">` + p.excerpt + `</p>
+                            <div class="post-card-meta"><span>Yazar: ` + p.author + `</span><span>Tarih: ` + p.date + `</span></div>
+                        </div>
+                    </article>
+                `).join('');
+            })
+            .catch(() => { document.getElementById('postsList').innerHTML = '<p style="grid-column:1/-1;text-align:center;">Icerikler yuklenemedi.</p>'; });
+    </script>
+</body>
+</html>
